@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="templates/base_layout.xhtml">
+    <ui:define name="main-content">
+        <main class="mt-3">
+            <hr class="bg-exodia hr-2"/>
+            <h1 class="text-center text-exodia">Login</h1>
+            <hr class="bg-exodia w-25 hr-2"/>
+            <h:form class="mx-auto w-25" id="login-form">
+                <div class="form-group">
+                    <h:outputLabel value="Username" class="text-exodia"/>
+                    <h:inputText value="#{userLoginBean.userLoginBindingModel.userName}" class="form-control"
+                                 id="user-name" a:placeholder="Username..." label="UserName"/>
+                    <!-- required="true" -->
+                </div>
+                <div>
+                    <h:message for="user-name" style="color: red" errorClass="alert alert-danger"/>
+                </div>
+                <div class="form-group">
+
+                    <h:outputLabel value="Password" class="text-exodia"/>
+                    <h:inputSecret value="#{userLoginBean.userLoginBindingModel.password}" class="form-control"
+                                   id="password" a:placeholder="Password..." label="Password"/>
+                    <!-- required="true" -->
+                </div>
+                <div>
+                    <h:message for="password" style="color: red" errorClass="alert alert-danger"/>
+                </div>
+                <hr class="bg-exodia hr-2"/>
+                <div class="button-holder d-flex justify-content-center">
+                    <h:commandButton value="Login" action="#{userLoginBean.login}" class="btn bg-exodia text-white"/>
+                </div>
+            </h:form>
+            <hr class="bg-exodia hr-2 mt-5"/>
+        </main>
+    </ui:define>
+</ui:composition>
+
+
+</html>
