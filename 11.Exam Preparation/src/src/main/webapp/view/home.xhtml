@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="templates/base-layout.xhtml">
+    <ui:define name="main-content">
+        <main>
+            <hr class="my-3"/>
+            <div class="text-center mb-3">
+                <h4 class="text-info">Welcome, #{session.getAttribute("username")}</h4>
+            </div>
+            <hr class="my-3"/>
+            <div class="container">
+                <div class="row mb-4 d-flex justify-content-around">
+                    <ui:repeat value="#{jobApplicationListBean.jobServiceModels}" var="model">
+                        <div class="col-md-3 d-flex flex-column text-center mt-4 mx-auto">
+                            <h:graphicImage
+                                    library="app-lib"
+                                    value="/resources/app-lib/jpg/#{model.sector.toLowerCase()}.jpg"
+                                    class="img-thumbnail mx-auto"
+                                    width="300"
+                                    height="300"
+                            />
+                            <h5 class="text-center">#{model.profession}</h5>
+                            <h:form>
+                                <div class="row d-flex flex-column text-center mx-auto">
+                                    <h:link value="Details" class="btn btn-info" outcome="job-details?id=#{model.id}"/>
+                                </div>
+                                <div class="row d-flex flex-column text-center mx-auto">
+                                    <h:link value="Delete" class="btn btn-danger" outcome="job-delete?id=#{model.id}"/>
+                                </div>
+                            </h:form>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+            <hr class="my-3"/>
+        </main>
+    </ui:define>
+</ui:composition>
+</html>

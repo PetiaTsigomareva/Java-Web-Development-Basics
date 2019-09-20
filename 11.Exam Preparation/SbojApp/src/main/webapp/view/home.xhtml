@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="templates/base_layout.xhtml">
+    <ui:define name="main-content">
+        <main>
+            <hr class="my-2"/>
+            <div class="text-center mt-3">
+                <h:link outcome="profile?id=#{session.getAttribute('userId')}" class="h4 text-info"
+                        value="Welcome, #{session.getAttribute('username')}"/>
+            </div>
+            <hr class="my-4"/>
+            <div class="container">
+                <div class="row mb-4 d-flex justify-content-around">
+                    <c:forEach items="#{userHomeBean.jobs}" var="job">
+                        <div class="col-md-4 d-flex flex-column text-center">
+                            <c:choose>
+                                <c:when test="#{job.sector}=='Medicine'">
+                                    <h:graphicImage library="lib" name="img/medicine.jpg"
+                                                    class="mx-auto img-thumbnail" width="200" height="200"/>
+                                </c:when>
+                                <c:when test="#{job.sector}=='Car'">
+                                    <h:graphicImage library="lib" name="img/car.jpg"
+                                                    class="mx-auto img-thumbnail" width="200" height="200"/>
+                                </c:when>
+                                <c:when test="#{job.sector}=='Food'">
+                                    <h:graphicImage library="lib" name="img/food.jpg"
+                                                    class="mx-auto img-thumbnail" width="200" height="200"/>
+                                </c:when>
+                                <c:when test="#{job.sector}=='Domestic'">
+                                    <h:graphicImage library="lib" name="img/domestic.jpg"
+                                                    class="mx-auto img-thumbnail" width="200" height="200"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <h:graphicImage library="lib" name="img/security.jpg"
+                                                    class="mx-auto img-thumbnail" width="200" height="200"/>
+                                </c:otherwise>
+                            </c:choose>
+                            <h5 class="text-center">#{job.profession}</h5>
+                            <h:form>
+                                <h:commandButton class="btn btn-info" value="Details"
+                                                 action="#{userHomeBean.details(job.id)}"/>
+                            </h:form>
+
+                            <h:form>
+                                <h:commandButton class="btn btn-danger" value="Delete"
+                                                 action="#{userHomeBean.delete(job.id)}"/>
+                            </h:form>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+            <hr class="my-3"/>
+        </main>
+    </ui:define>
+</ui:composition>
+
+</html>

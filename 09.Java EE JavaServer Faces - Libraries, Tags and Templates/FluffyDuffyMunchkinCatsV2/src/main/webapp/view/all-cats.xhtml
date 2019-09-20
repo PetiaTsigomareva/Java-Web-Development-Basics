@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="templates/base-layout.xhtml">
+    <ui:define name="main-content">
+        <main>
+            <div class="jumbotron justify-content-center jumbotron-background">
+                <div class="row">
+                    <div class="col col-md-12 d-flex justify-content-center">
+                        <h1>All Cats!</h1>
+                    </div>
+                </div>
+                <hr class="hr-background"/>
+                <h:dataTable class="table table-striped" value="#{catListBean.cats}" var="c">
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        <h:outputText value="#{c.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Breed</f:facet>
+                        <h:outputText value="#{c.breed}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Color</f:facet>
+                        <h:outputText value="#{c.color}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Gender</f:facet>
+                        <h:outputText value="#{c.gender}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Price</f:facet>
+                        <h:outputText value="#{c.price}">
+                            <f:convertNumber pattern="$###.###" />
+                        </h:outputText>
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Added On</f:facet>
+                        <h:outputText value="#{c.addedOn}">
+                            <f:convertDateTime pattern="yyyy-MM-dd"/>
+                        </h:outputText>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </main>
+    </ui:define>
+</ui:composition>
+
+
+</html>
